@@ -80,5 +80,5 @@ tetris-game/
 ###  Игровой процесс
 <img width="1338" height="883" alt="image" src="https://github.com/user-attachments/assets/f5de8a16-9565-487c-bcaf-82857f022aae" />
 
-### Смена пользователя и данные прошлый 
+### Смена пользователя и данные прошлых
 <img width="938" height="732" alt="image" src="https://github.com/user-attachments/assets/8e97e7a7-b452-4a44-aac7-a3d15f72eb12" />
