@@ -75,5 +75,10 @@ tetris-game/
 - Минимальная скорость: 100ms
 
 ###  Главный экран
-<img width="1920" height="1139" alt="image" src="https://github.com/user-attachments/assets/576b50a9-d4c5-4675-8ada-b81b534472c9" />
+<img width="368" height="254" alt="image" src="https://github.com/user-attachments/assets/b2043640-5be5-44cd-a511-caf6dffd71a8" />
 
+###  Игровой процесс
+<img width="1338" height="883" alt="image" src="https://github.com/user-attachments/assets/f5de8a16-9565-487c-bcaf-82857f022aae" />
+
+### Смена пользователя и данные прошлый 
+<img width="938" height="732" alt="image" src="https://github.com/user-attachments/assets/8e97e7a7-b452-4a44-aac7-a3d15f72eb12" />
