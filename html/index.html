@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tetris Game</title>
+    <meta charset="UTF-8">   
+    <link rel="shortcut icon" href="/image/icon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1> Tetris Game</h1>
+        <br>
+        <p class="welcome">Добро пожаловать! Введите ваше имя:</p><br>
+        
+        <form action="main.html" method="get" onsubmit="storeUsername()">
+            <label>
+                <input class="input" type="text" id="username" name="username" 
+                    placeholder="Ваше имя" required 
+                    oninput="previewUsername(this.value)">
+            </label>
+            <br>
+            <div class="button1">
+            <input class="button1_ch" type="submit" value="Начать игру">
+                        </div>
+        </form>
+        <br>
+        <div class="return" id="welcomeMessage" class="welcome-message" style="display: none;">
+            С возвращением, <span id="savedName"></span>!
+        </div>
+    </div>
+    <script src="/js/userManager.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

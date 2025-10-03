@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tetris Game</title>
+    <link rel="shortcut icon" href="/image/icon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <h1> Tetris Game</h1>
+        
+        <div class="game-layout">
+            <!-- Левая панель - управление и статистика -->
+            <div class="left-panel">
+                <div class="user-info">
+                    <h2>Добро пожаловать, <span id="currentUser">Гость</span>!</h2>
+                    <button class="user-change-btn" id="changeUserBtn"> Сменить пользователя</button>
+                </div>
+
+                <div class="sidebar">
+                    <h3>Статистика</h3>
+                    <p>Счет: <span id="score">0</span></p>
+                    <p>Уровень: <span id="level">1</span></p>
+                    <p>Линии: <span id="lines">0</span></p>
+                    <p>Рекорд: <span id="bestScore">0</span></p>
+                    <p>Скорость: <span id="speed">1x</span></p>
+                    
+                    <div class="user-stats">
+                        <h3>Профиль игрока</h3>
+                        <p>Игр сыграно: <span id="gamesPlayed">0</span></p>
+                        <p>Дата регистрации: <span id="firstLogin">-</span></p>
+                        <p>Последний вход: <span id="lastLogin">-</span></p>
+                    </div>
+
+                    <!-- КНОПКА СБРОСА -->
+                    <button class="reset-btn" id="resetButton"> Новая игра</button>
+                </div>
+            </div>
+
+            <!-- Центр - игровое поле -->
+            <div class="game-field">
+                <div class="main-field">
+                    <!-- Canvas будет добавлен здесь автоматически -->
+                </div>
+            </div>
+
+            <!-- Правая панель - предпросмотр и управление -->
+            <div class="right-panel">
+                <!-- ПАНЕЛЬ ПРЕДПРОСМОТРА СЛЕДУЮЩЕЙ ФИГУРЫ -->
+                <div class="preview-panel">
+                    <h3>Следующая фигура</h3>
+                    <div class="preview-container">
+                        <canvas id="nextFigureCanvas" width="120" height="120"></canvas>
+                    </div>
+                </div>
+
+                <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
+                <div class="controls-panel">
+                    <h3>Управление</h3>
+                    <div class="controls-list">
+                        <div class="control-item">
+                            <span class="key">←</span>
+                            <span class="action">Влево</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">→</span>
+                            <span class="action">Вправо</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">↓</span>
+                            <span class="action">Быстрее вниз</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">↑</span>
+                            <span class="action">Поворот</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">Пробел</span>
+                            <span class="action">Мгновенное падение</span>
+                        </div>
+                        <div class="control-item">
+                            <span class="key">ESC</span>
+                            <span class="action">Пауза</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ -->
+                <div class="info-panel">
+                    <h3>Информация</h3>
+                    <div class="info-content">
+                        <p>Уровень повышается каждые 10 линий</p>
+                        <p>Скорость игры увеличивается с уровнем</p>
+                        <p>Статистика сохраняется автоматически</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ НОВОЙ ИГРЫ -->
+    <div id="customModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h3>Новая игра</h3>
+            <p>Вы уверены, что хотите начать новую игру?</p>
+            <div class="custom-modal-buttons">
+                <button class="custom-confirm-btn">Да, начать</button>
+                <button class="custom-cancel-btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ СМЕНЫ ПОЛЬЗОВАТЕЛЯ -->
+    <div id="userChangeModal" class="custom-modal">
+        <div class="custom-modal-content user-change-modal">
+            <h3> Смена пользователя</h3>
+            <p>Введите новое имя пользователя:</p>
+            <input type="text" id="newUsernameInput" placeholder="Ваше имя" class="username-input">
+            
+            <!-- Список существующих пользователей -->
+            <div class="existing-users" id="existingUsers">
+                <h4>Существующие пользователи:</h4>
+                <div class="users-list" id="usersList">
+                    <!-- Список будет заполнен JavaScript -->
+                </div>
+            </div>
+            
+            <div class="custom-modal-buttons">
+                <button class="custom-confirm-btn" id="confirmUserChange">Сохранить</button>
+                <button class="custom-cancel-btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/userManager.js"></script>
+    <script src="/js/modules/field.js"></script>
+    <script src="/js/modules/block.js"></script>
+    <script src="/js/modules/figures.js"></script>
+    <script src="/js/modules/figureRenderer.js"></script>
+    <script src="/js/modules/game.js"></script>
+    <script src="/js/modules/scoreManager.js"></script>
+    <script src="/js/modules/figureBag.js"></script>
+    <script src="/js/modules/nextFigureRenderer.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

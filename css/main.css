@@ -1,0 +1,549 @@
+body {
+    background: radial-gradient(#570808, #540e42);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+h1 {
+    font-size: 30px;
+    color: aliceblue;
+    margin: 0;
+}
+
+h2 {
+    font-size: 20px;
+    color: aliceblue;
+    margin: 0;
+}
+
+/* Основной layout */
+.game-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Левая панель */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 250px;
+    flex-shrink: 0;
+}
+
+.user-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    text-align: center;
+}
+
+/* ОБЩИЕ СТИЛИ ДЛЯ КНОПОК */
+button {
+    background: #7b43ac52;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+button:hover {
+    background: #7b43ac;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(123, 67, 172, 0.4);
+}
+
+/* КНОПКА СМЕНЫ ПОЛЬЗОВАТЕЛЯ */
+.user-change-btn {
+    background: linear-gradient(135deg, #7b43ac52, #9b59b652);
+    font-weight: bold;
+}
+
+.user-change-btn:hover {
+    background: linear-gradient(135deg, #7b43ac, #9b59b6);
+}
+
+/* КНОПКА СБРОСА ИГРЫ */
+.reset-btn {
+    background: linear-gradient(135deg, #e74c3c52, #c0392b52);
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.reset-btn:hover {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.sidebar {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    backdrop-filter: blur(5px);
+    text-align: left;
+}
+
+.sidebar h3 {
+    text-align: center;
+    margin-top: 0;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.sidebar p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.user-stats {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-stats h3 {
+    color: #ffd700;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Центральная часть - игровое поле */
+.game-field {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.main-field {
+    display: flex;
+    justify-content: center;
+}
+
+.tetris-field {
+    border: 2px solid #e75c5cdf;
+    background: #131329;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(224, 162, 162, 0.944);
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+.tetris-field:hover {
+    border-color: #e74c3c !important;
+    box-shadow: 0 8px 20px rgba(231, 77, 60, 0.791);
+}
+
+.right-panel {
+    min-width: 250px;
+    flex-shrink: 0;
+}
+
+/* КАСТОМНОЕ МОДАЛЬНОЕ ОКНО */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.custom-modal-content {
+    background: radial-gradient(#570808, #540e42);
+    margin: 15% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border: 2px solid #e75c5cdf;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+}
+
+.custom-modal-content h3 {
+    color: #ffd700;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal-content p {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.custom-modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.custom-confirm-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    padding: 12px 25px;
+    font-weight: bold;
+    flex: 1;
+}
+
+.custom-confirm-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+}
+
+.custom-cancel-btn {
+    background: linear-gradient(135deg, #7b43ac52, #9b59b652);
+    padding: 12px 25px;
+    font-weight: bold;
+    flex: 1;
+}
+
+.custom-cancel-btn:hover {
+    background: linear-gradient(135deg, #7b43ac, #9b59b6);
+    transform: translateY(-2px);
+}
+
+/* АНИМАЦИИ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+    .game-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .left-panel, .right-panel {
+        min-width: auto;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .custom-modal-content {
+        margin: 20% auto;
+        width: 85%;
+    }
+    
+    .custom-modal-buttons {
+        flex-direction: column;
+    }
+}
+
+
+/* ... предыдущие стили остаются без изменений ... */
+
+/* СТИЛИ ДЛЯ ОКНА СМЕНЫ ПОЛЬЗОВАТЕЛЯ */
+.user-change-modal {
+    max-width: 450px;
+}
+
+.username-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #7b43ac52;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    margin: 15px 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.username-input:focus {
+    outline: none;
+    border-color: #7b43ac;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px rgba(123, 67, 172, 0.5);
+}
+
+.username-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* СТИЛИ ДЛЯ СУЩЕСТВУЮЩИХ ПОЛЬЗОВАТЕЛЕЙ */
+.existing-users {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.existing-users h4 {
+    color: #ffd700;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.user-item {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-item:hover {
+    background: rgba(123, 67, 172, 0.3);
+    border-color: #7b43ac;
+    transform: translateX(5px);
+}
+
+.user-item.active {
+    background: rgba(123, 67, 172, 0.5);
+    border-color: #7b43ac;
+    box-shadow: 0 0 10px rgba(123, 67, 172, 0.3);
+}
+
+.user-name {
+    color: white;
+    font-weight: bold;
+}
+
+.user-stats {
+    color: #ffd700;
+    font-size: 12px;
+}
+
+.user-stats .best-score {
+    margin-left: 10px;
+}
+
+/* СКРОЛЛБАР ДЛЯ СПИСКА ПОЛЬЗОВАТЕЛЕЙ */
+.users-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.users-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.users-list::-webkit-scrollbar-thumb {
+    background: #7b43ac;
+    border-radius: 3px;
+}
+
+.users-list::-webkit-scrollbar-thumb:hover {
+    background: #9b59b6;
+}
+
+/* СТИЛЬ ДЛЯ КНОПКИ СМЕНЫ ПОЛЬЗОВАТЕЛЯ В ИНТЕРФЕЙСЕ */
+.user-change-btn {
+    background: linear-gradient(135deg, #7b43ac52, #9b59b652);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.user-change-btn:hover {
+    background: linear-gradient(135deg, #7b43ac, #9b59b6);
+}
+
+/* ! */
+
+/* ПРАВАЯ ПАНЕЛЬ */
+.right-panel {
+    min-width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ПАНЕЛЬ ПРЕДПРОСМОТРА */
+.preview-panel {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    text-align: center;
+}
+
+.preview-panel h3 {
+    color: #ffd700;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+#nextFigureCanvas {
+    border: 2px solid #7b43ac52;
+    border-radius: 5px;
+    background: #131329;
+    display: block;
+}
+
+/* ПАНЕЛЬ УПРАВЛЕНИЯ */
+.controls-panel {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.controls-panel h3 {
+    color: #ffd700;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.controls-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.control-item:hover {
+    background: rgba(123, 67, 172, 0.2);
+    border-color: #7b43ac;
+    transform: translateX(5px);
+}
+
+.key {
+    background: linear-gradient(135deg, #7b43ac, #9b59b6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 50px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.action {
+    color: white;
+    font-size: 14px;
+    text-align: right;
+    flex: 1;
+    margin-left: 10px;
+}
+
+/* ИНФОРМАЦИОННАЯ ПАНЕЛЬ */
+.info-panel {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.info-panel h3 {
+    color: #ffd700;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.info-content {
+    color: white;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.info-content p {
+    margin: 8px 0;
+    padding-left: 10px;
+    border-left: 2px solid #7b43ac;
+}
+
+
+
